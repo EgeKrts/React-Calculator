@@ -1,33 +1,65 @@
+import { useState } from "react";
+
 function App() {
+  const [calc, setCalc] = useState("");
+  const [result, setResult] = useState("");
+
+  const operators = ["+", "-", "*", "/", "."];
+
+  const updateCalc = (value) => {
+    if (
+      (operators.includes(value) && calc === "") ||
+      (operators.includes(value) && operators.includes(calc.slice(-1)))
+    ) {
+      return;
+    }
+
+    setCalc(calc + value);
+
+    if (!operators.includes(value)) {
+      setResult(eval(calc + value).toString());
+    }
+  };
+
+  const createNumber = () => {
+    const numbers = [];
+
+    for (let i = 1; i < 10; i++) {
+      numbers.push(
+        <button onClick={() => updateCalc(i.toString())} key={i}>
+          {i}
+        </button>
+      );
+    }
+    return numbers;
+  };
+
+  const calculate = () => {
+    setCalc(eval(calc).toString());
+  };
+
   return (
     <div className="App">
       <div className="calculator">
         <div className="display">
-          <span>(0)</span> 0
+          {result ? <span>({result})</span> : ""} {calc || "0"}
         </div>
 
         <div className="operators">
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>/</button>
+          <button onClick={() => updateCalc("+")}>+</button>
+          <button onClick={() => updateCalc("-")}>-</button>
+          <button onClick={() => updateCalc("*")}>*</button>
+          <button onClick={() => updateCalc("/")}>/</button>
 
           <button>DEL</button>
         </div>
 
         <div className="numbers">
-          <button>9</button>
-          <button>8</button>
-          <button>7</button>
-          <button>6</button>
-          <button>5</button>
-          <button>4</button>
-          <button>3</button>
-          <button>2</button>
-          <button>1</button>
-          <button>0</button>
-          <button>.</button>
-          <button>=</button>
+          {createNumber()}
+          <button onClick={() => updateCalc("0")}>0</button>
+          <button onClick={() => updateCalc(".")}>.</button>
+
+          <button onClick={() => calculate()}>=</button>
         </div>
       </div>
     </div>
