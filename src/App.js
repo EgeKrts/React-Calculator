@@ -38,6 +38,16 @@ function App() {
     setCalc(eval(calc).toString());
   };
 
+  const deleteLast = () => {
+    if (calc == "") {
+      return;
+    }
+
+    const value = calc.slice(0, -1);
+
+    setCalc(value);
+  };
+
   return (
     <div className="App">
       <div className="calculator">
@@ -51,7 +61,7 @@ function App() {
           <button onClick={() => updateCalc("*")}>*</button>
           <button onClick={() => updateCalc("/")}>/</button>
 
-          <button>DEL</button>
+          <button onClick={() => deleteLast()}>DEL</button>
         </div>
 
         <div className="numbers">
