@@ -1,8 +1,8 @@
 :root {
-  --primary: #ad1457;
+  --primary: #4fd3c4;
   --secondary: #673ab7;
-  --dark: #263238;
-  --light: #fff;
+  --dark: #488fb1;
+  --light: rgb(75, 74, 74);
 }
 
 * {
@@ -36,14 +36,14 @@ body {
   padding: 16px;
   text-align: right;
   background-color: var(--dark);
-  color: var(--light);
+  color: #fff;
   font-size: 25px;
   font-weight: 300;
 }
 
 .display span {
   font-size: 15px;
-  color: #607d8b;
+  color: #ffffff;
 }
 
 button {
@@ -61,6 +61,7 @@ button:hover {
 
 .operators {
   display: flex;
+  background-color: #4fd3c4;
 }
 
 .operators button {
@@ -72,6 +73,7 @@ button:hover {
 .numbers {
   display: flex;
   flex-wrap: wrap;
+  background-color: var(--dark);
 }
 
 .numbers button {
